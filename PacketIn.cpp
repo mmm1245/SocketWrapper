@@ -25,21 +25,21 @@ int PacketIn::readInt(){
     }
     return toRet;
 }
-char* PacketIn::readCharArray(int size){
+void PacketIn::readCharArray(char* arr, int size){
     if(size > this->buffer.size())
-        return nullptr;
-    char* toRet = new char[size];
+        return;
     for(int i = 0;i < size;i++){
-        toRet[i] = buffer.back();
+        arr[i] = buffer.back();
         buffer.pop_back();
     }
-    return toRet;
 }
 char* PacketIn::readDynamicLengthCharArray(int* sizeAddr){
     int size = readInt();
     if(sizeAddr != nullptr)
         *sizeAddr = size;
-    return readCharArray(size);
+    char* arr = new char[size];
+    readCharArray(arr, size);
+    return arr;
 }
 
 int PacketIn::getSize(){

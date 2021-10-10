@@ -13,7 +13,7 @@ class PacketIn
 	public:
 		char readByte();
 		int readInt();
-		char* readCharArray(int size);
+		void readCharArray(char* arr, int size);
 		char* readDynamicLengthCharArray(int* sizeAddr);
 		int getSize();
 };
