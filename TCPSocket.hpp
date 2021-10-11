@@ -21,7 +21,7 @@ class TCPSocket
 		~TCPSocket();
 	public:
 		bool isBroken();
-		bool sendMessage(Packet* packet);
+		bool sendMessage(Packet packet);
 		std::vector<PacketIn> readPackets();
 		PacketIn readOnePacket();
 };
