@@ -54,14 +54,14 @@ bool TCPSocket::isBroken(){
     return badSocket;
 }
 
-bool TCPSocket::sendMessage(Packet& packet){
+bool TCPSocket::sendMessage(Packet* packet){
     if(isBroken()){
         printf("socket is broken");
         return false;
     }
-    int len = packet.getLength();
+    int len = packet->getLength();
     send(socketDescriptor , &len , sizeof(int) , 0 );
-    send(socketDescriptor , packet.getData() , len , 0 );
+    send(socketDescriptor , packet->getData() , len , 0 );
 }
 std::vector<PacketIn> TCPSocket::readPackets(){
     bool shouldntStop = true;
